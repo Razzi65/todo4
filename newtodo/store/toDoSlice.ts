@@ -10,7 +10,7 @@ export const toDoSlice = createSlice({
     initialState:{toDoArr:[] as toDoType[]},
     reducers: {
         addHandle: (state, action) => {
-            console.log(state.toDoArr);
+            
             
         }
     }
@@ -19,3 +19,4 @@ export const toDoSlice = createSlice({
 
 
 export default toDoSlice.reducer
+export const {addHandle} = toDoSlice.actions

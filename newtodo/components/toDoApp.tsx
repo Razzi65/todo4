@@ -3,12 +3,12 @@ import UseToDo from "@/custom hooks/useToDo"
 
 const ToDoApp = () => {
 
-    const {setInput} = UseToDo()
+    const {setInput, onClickHandler} = UseToDo()
 
     return (
         <>
         <input onChange={(e)=>setInput(e.target.value)} /> <br/>
-        <button> add </button>
+        <button onClick={()=>onClickHandler()}> add </button>
         </>
     )
 }
