@@ -8,14 +8,14 @@ type toDoType = {
     id?: string
 }
 
-const fetchtoDos = createAsyncThunk('todos/fetchtodos', async() => {
+const addtoDos = createAsyncThunk('todos/addtodos', async(newTodo: toDoType) => {
 
     try {
-         const docRef = await addDoc(collection(db, "todos"), {
-         }
-        
+         const docRef = await addDoc(collection(db, "todos"), newTodo)
+         return {id:docRef.id, ...newTodo}
 
-)} catch (error) {
+
+} catch (error) {
         console.log("error adding todo", error);
         
         
@@ -29,9 +29,19 @@ export const toDoSlice = createSlice({
     initialState:{toDoArr:[] as toDoType[]},
     reducers: {
         addHandle: (state, action) => {
+            return state
             
-            
-        }
+        },
+    },
+
+    extraReducers: (builder:any)=>{
+        builder.addCase(addtoDos.fulfilled,(state, action)=>{
+            let newstate:toDoType={
+                ...state,
+                toDo:action.payload
+            }
+            return newstate
+        })
     }
 
 })
